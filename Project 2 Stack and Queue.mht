@@ -1,0 +1,802 @@
+From: "Saved by Windows Internet Explorer 8"
+Subject: Project 2: Stack and Queue
+Date: Mon, 5 Dec 2011 00:40:58 -0500
+MIME-Version: 1.0
+Content-Type: multipart/related;
+	type="text/html";
+	boundary="----=_NextPart_000_0003_01CCB2E6.8E34F800"
+X-MimeOLE: Produced By Microsoft MimeOLE V6.0.6002.18463
+
+This is a multi-part message in MIME format.
+
+------=_NextPart_000_0003_01CCB2E6.8E34F800
+Content-Type: text/html;
+	charset="Windows-1252"
+Content-Transfer-Encoding: quoted-printable
+Content-Location: http://www.cs.fsu.edu/~lacher/courses/COP3330/assigns/proj2.html
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<HTML><HEAD><TITLE>Project 2: Stack and Queue</TITLE>
+<META content=3D"text/html; charset=3Dwindows-1252" =
+http-equiv=3DContent-Type>
+<META name=3DGENERATOR content=3D"MSHTML 8.00.6001.19154">
+<STYLE type=3Dtext/css>@import url( =
+http://www.cs.fsu.edu/~lacher/styles/RCLstyle1.css );
+</STYLE>
+</HEAD>
+<BODY aLink=3D#808080 link=3Dblack vLink=3Dblack><!--=0A=
+<center>=0A=
+<h1><font color=3D#990000>DRAFT: Open for comment in the discussion =
+forum.</font></h1>=0A=
+</center>=0A=
+--><!--=0A=
+<center>=0A=
+<h1><font color=3D#990000>Official Release: Open for comment in the =
+discussion forum.</font></h1>=0A=
+</center>=0A=
+-->
+<CENTER>
+<H1>Project 2: Stack and Queue</H1></CENTER>
+<CENTER>
+<TABLE border=3D2 cellSpacing=3D0 borderColor=3D#990000 cellPadding=3D4 =
+width=3D"90%">
+  <TBODY>
+  <TR>
+    <TD>
+      <P><STRONG>Note:</STRONG> This assignment is used to assess the =
+required=20
+      outcomes for the course, as outlined in the course syllabus. These =
+
+      outcomes are: </P>
+      <OL type=3Di>
+        <LI>use of arrays and pointers in the solution of programming =
+problems=20
+        using C++=20
+        <LI>create and use classes within the C++ programming language=20
+        <LI>create, compile, and execute C++ programs within the Unix=20
+        environment, using the Object-Oriented design model=20
+        <LI>program using C++ techniques: composition of objects, =
+operator=20
+        overloads, dynamic memory allocation, inheritance and =
+polymorphism, and=20
+        file I/O=20
+        <LI>program using C++ techniques: composition of objects, =
+templates,=20
+        preprocessor directives, and basic data structures. </LI></OL>
+      <P>These will be assessed using the following rubric: </P>
+      <BLOCKQUOTE>
+        <TABLE border=3D2 cellSpacing=3D0 cellpading=3D"4">
+          <TBODY>
+          <TR>
+            <TD colSpan=3D2>Rubric for Outcome v. </TD>
+            <TD>I </TD>
+            <TD>E </TD>
+            <TD>H </TD>
+            <TD vAlign=3Dtop rowSpan=3D7>&nbsp;<BR>Key:<BR>&nbsp; I =3D=20
+              ineffective<BR>&nbsp; E =3D effective<BR>&nbsp; H =3D =
+highly=20
+            effective</TD></TR>
+          <TR>
+            <TD align=3Dright>v.</TD>
+            <TD>Templates, Basic Data Structures, Preprocessor =
+Directives, and=20
+              Composition</TD>
+            <TD>-</TD>
+            <TD>-</TD>
+            <TD>-</TD></TR></TBODY></TABLE></BLOCKQUOTE>
+      <P>In order to earn a course grade of C- or better, the assessment =
+must=20
+      result in Effective or Highly Effective for each outcome.=20
+  </P></TD></TR></TBODY></TABLE></CENTER>
+<P><B>Educational Objectives:</B> After completing this assignment the =
+student=20
+should have the following knowledge, ability, and skills:</P>
+<UL>
+  <LI>Define the concept of Generic Container=20
+  <LI>Define the ADT Stack with elements of type T and maximum size N=20
+  <LI>Give examples of the use of Stack in computing=20
+  <LI>Describe an implementation plan for generic Stack as a class =
+template=20
+  <TT>Stack&lt;T,N&gt;</TT> based on an array of <TT>T</TT> objects=20
+  <LI>Code the implementation for <TT>Stack&lt;T,N&gt;</TT> using the =
+plan=20
+  <LI>Define the ADT Queue with elements of type T=20
+  <LI>Give examples of the use of Queue in computing=20
+  <LI>Describe an implementation plan for generic Queue as a class =
+template=20
+  <TT>Queue&lt;T&gt;</TT> based on dynamically allocated links =
+containing=20
+  <TT>T</TT> objects=20
+  <LI>Code the implementation for <TT>Stack&lt;T,N&gt;</TT> using the =
+plan=20
+  <LI>Describe an implementation plan for <TT>Stack&lt;T,N&gt;</TT> =
+based on=20
+  dynamically allocated links containing <TT>T</TT> objects=20
+  <LI>Explain why it is impractical to implement <TT>Queue&lt;T&gt;</TT> =
+using=20
+  an array </LI></UL>
+<P><STRONG>Operational Objectives:</STRONG> Create two generic container =
+classes=20
+<TT>fsu::TStack&lt;T,N&gt;</TT> and <TT>fsu::TQueue&lt;T&gt;</TT> that =
+satisfy=20
+the interface requirements given below, along with appropriate test =
+harnesses=20
+for these classes.</P>
+<P><STRONG>Deliverables:</STRONG> Five files <TT>tstack.h</TT>,=20
+<TT>tqueue.h</TT>, <TT>ftstack.cpp</TT>, and <TT>ftqueue.cpp</TT>. </P>
+<H2>Abstract Data Types</H2>
+<P>An <EM>abstract data type</EM>, abbreviated ADT, consists of three =
+things:=20
+</P>
+<OL>
+  <LI>A set of elements of some type <TT>T</TT>=20
+  <LI>Operations that may modify the set or return values associated =
+with the=20
+  set=20
+  <LI>Rules of behavior, or axioms, that determine how the operations =
+interact=20
+  </LI></OL>
+<P>The operations and axioms together should determine a unique =
+character for=20
+the ADT, so that any two implementations should be essentially =
+equivalent. (The=20
+word <EM>isomorphic</EM> is used to give precision to "essentially =
+equivalent".=20
+We'll look at this in the next course.) </P>
+<H2>Stacks and Queues</H2>
+<P>The <EM>stack</EM> and <EM>queue</EM> are ADTs that are used in many=20
+applications and have roots that pre-date the invention of high-level =
+languages.=20
+Conceptually, stack and queue are sets of data that can be expanded, =
+contracted,=20
+and accessed using very specific operations. The stack models the =
+"LIFO", or=20
+last-in, first-out, rule, and the queue models the "FIFO", or first-in,=20
+first-out rule. The actual names for the stack and queue operations may =
+vary=20
+somewhat from one description to another, but the behavior of the =
+abstract stack=20
+and queue operations is well known and unambiguously understood =
+throughout=20
+computer science. Stacks and queues are important in many aspects of =
+computing,=20
+ranging from hardware design and I/O to algorithm control structures. =
+</P>
+<P>Typical uses of ADT Stack are (1) runtime environment for modern =
+programming=20
+languages (facilitating recursive function calls, among other things), =
+(2)=20
+control of the depth first search and backtracking search algorithms, =
+(3)=20
+hardware evaluation of postfix expressions, and (4) various compiler =
+operations,=20
+such as converting expressions from infix to postfix. </P>
+<P>Typical uses of ADT Queue are (1) buffers, without which computer=20
+communication would be impossible, (2) control of algorithms such as =
+breadth=20
+first search, and (3) simulation modelling of systems as diverse as=20
+manufacturing facilities, customer service, and computer operating =
+systems. </P>
+<H2>Abstract Stack Interface</H2>
+<P>The stack abstraction has the following operations and behavior: </P>
+<UL>
+  <LI><TT><B>Push(t)</B></TT> Inserts the element <TT><B>t</B></TT> into =
+the=20
+  stack=20
+  <LI><TT><B>Pop()</B></TT> Removes the last-inserted element; undefined =
+when=20
+  stack is empty=20
+  <LI><TT><B>Top()</B></TT> Returns the last-inserted element; undefined =
+when=20
+  stack is empty=20
+  <LI><TT><B>Empty()</B></TT> Returns true iff the stack has no elements =
+
+  <LI><TT><B>Size()</B></TT> Returns the number of elements in the stack =
+
+</LI></UL>
+<H2>Abstract Queue Interface</H2>
+<P>The queue abstraction has the following operations and behavior: </P>
+<UL>
+  <LI><TT><B>Push(t)</B></TT> Inserts the element <TT><B>t</B></TT> into =
+the=20
+  queue=20
+  <LI><TT><B>Pop()</B></TT> Removes the first-inserted element; =
+undefined when=20
+  queue is empty=20
+  <LI><TT><B>Front()</B></TT> Returns the first-inserted element; =
+undefined when=20
+  queue is empty=20
+  <LI><TT><B>Empty()</B></TT> Returns true iff the queue has no elements =
+
+  <LI><TT><B>Size()</B></TT> Returns the number of elements in the queue =
+
+</LI></UL>
+<H2>Application: Converting Infix to Postfix Notation</H2>
+<P>As one example of the use of stacks and queues in computing, consider =
+the=20
+following function that illustrates an algorithm for converting =
+arithmetic=20
+expressions from infix to postfix notation: </P>
+<BLOCKQUOTE><PRE>...
+#include &lt;tqueue.h&gt;
+#include &lt;tstack.h&gt;
+...
+typedef fsu::TQueue &lt; Token &gt; TokenQueue;
+typedef fsu::TStack &lt; Token &gt; TokenStack;
+// a Token is either an operand, an operator, or a left or right =
+parenthesis
+...
+bool i2p (TokenQueue &amp; Q1, TokenQueue &amp; Q2)
+// converts infix expression in Q1 to postfix expression in Q2
+// returns true on success, false if syntax error is encountered
+{
+   Token L( '(' ), R( ')' );  // left and right parentheses
+   TokenStack S;              // algorithm control stack
+   Q2.Clear();                // make sure ouput queue is empty
+   while (!Q1.Empty())
+   {
+      if (Q1.Front() =3D=3D L) // next Token is '('
+      // push '(' to mark beginning of a parenthesized expression
+      {
+         S.Push(Q1.Front());
+         Q1.Pop();
+      }
+      else if (Q1.Front().IsOperator()) // next Token is an operator
+      {
+         // pop previous operators of equal or higher precedence to =
+output
+         while (!S.Empty() &amp;&amp; S.Top() &gt;=3D Q1.Front())
+         {
+            Q2.Push(S.Top());
+            S.Pop();
+         }
+         // then push new operator onto stack
+         S.Push(Q1.Front());
+         Q1.Pop();
+      }
+      else if (Q1.Front() =3D=3D R) // next Token is ')'
+      // regurgitate operators for the parenthesized expression
+      {
+         while (!S.Empty() &amp;&amp; !(S.Top() =3D=3D L))
+         {
+            Q2.Push(S.Top());
+            S.Pop();
+         }
+         if (S.Empty())      // unbalanced parentheses
+         {
+            std::cout &lt;&lt; "** error: too many right parens\n";
+            return false;
+         }
+         S.Pop();            // discard '('
+         Q1.Pop();           // discard ')'
+      }
+      else                   // next Token should be an operand
+      // send operand directly to output
+      {
+         Q2.Push(Q1.Front());
+         Q1.Pop();
+      }
+   }  // end while()
+   // regurgitate remaining operators
+   while (!S.Empty())
+   {
+      if (S.Top() =3D=3D L)      // unbalanced parentheses
+      {
+         std::cout &lt;&lt; "** error: too many left parens\n";
+         return false;
+      }
+      Q2.Push(S.Top());
+      S.Pop();
+   }
+   return true;
+}  // end i2p()
+</PRE></BLOCKQUOTE>
+<P>This is a complex algorithm, but not beyond your capability to =
+understand.=20
+Notice how the algorithm takes into account the different levels of =
+precedence=20
+among operators and the possibility of parenthetical sub-expressions. =
+Things to=20
+make special note of are: </P>
+<UL>
+  <LI>A typedef statement is used to define the types =
+<TT>TokenQueue</TT> and=20
+  <TT>TokenStack</TT> as a queue or stack of tokens; this serves both =
+programmer=20
+  convenience and readability of the program.=20
+  <LI>Function arguments of type <TT>TokenQueue</TT> are used as buffers =
+to pass=20
+  an expression in to and out from the function.=20
+  <LI>A locally declared variable of type <TT>TokenStack</TT> is used as =
+the=20
+  principal control structure for the function. </LI></UL>
+<P>The stack is used to store the operators of parenthetical =
+subexpressions as=20
+well as operators of one precedence level pending discovery of an =
+operator of=20
+lower precedence. This function is distributed as part of the file=20
+<TT>in2post.cpp</TT>. </P>
+<P>Use the distributed executable <TT>in2post.x</TT> to experiment so =
+that you=20
+understand the roles Stack and Queue play in the algorithm. </P>
+<H2>TStack Implementation Plan</H2>
+<P>We will implement the stack abstraction as a C++ class template </P>
+<BLOCKQUOTE><PRE>template &lt; typename T , size_t N &gt;
+TStack;
+</PRE></BLOCKQUOTE>
+<P>with the following public methods: </P>
+<BLOCKQUOTE><PRE>// TStack &lt; T , N &gt; API
+void     Push     (const T&amp; t); // push t onto stack; error if full
+T        Pop      ();           // pop stack and return removed element; =
+error if stack is empty
+T&amp;       Top      ();           // return top element of stack; =
+error if stack is empty
+const T&amp; Top      () const;     // const version
+size_t   Size     () const;     // return number of elements in stack
+size_t   Capacity () const;     // return storage capacity [maximum =
+size] of stack
+int      Empty    () const;     // return 1/true if stack is empty, =
+0/false if not empty
+void     Clear    ();           // make the stack empty
+void     Display  (std::ostream&amp; os, char ofc =3D '\0') const; // =
+output contents through os
+</PRE></BLOCKQUOTE>
+<P>There should be a full complement of self-management features: </P>
+<BLOCKQUOTE><PRE>TStack             ();              // default =
+constructor
+TStack             (T fill);        // puts "fill" in each slot of the =
+underlying array
+TStack             (const TStack&amp;); // copy constructor
+~TStack            ();              // destructor
+TStack&amp; operator =3D (const TStack&amp;); // assignment operator
+</PRE></BLOCKQUOTE>
+<P>The element and size data will be maintained in private variables: =
+</P>
+<BLOCKQUOTE><PRE>const size_t capacity_;  // =3D N =3D size of array   - =
+fixed during life of stack
+T            data_[N];   // array of T objects    - where T objects are =
+stored
+size_t       size_;      // current size of stack - dynamic during life =
+of stack
+</PRE></BLOCKQUOTE>
+<P>The class constructors will have responsibility for initializing =
+variables.=20
+Note that <TT>capacity_</TT> is a constant, so it must be initialized by =
+the=20
+constructor in the initialization list and it cannot be changed during =
+the life=20
+of a stack object; <TT>capacity_</TT> should be given the value passed =
+in as the=20
+second template argument <TT>N</TT>. Because all class variables are =
+declared at=20
+compile time, the destructor will have no responsibilities. Values =
+stored in the=20
+<TT>data_</TT> array and the <TT>size_</TT> variable will be correctly=20
+maintained by the push and pop operations, using the "upper index" end =
+of the=20
+data as the top of the stack. The data in the stack should always be the =
+array=20
+elements in the range <TT>[0..size_)</TT>, and the element =
+<TT>data_[size_ -=20
+1]</TT> is the top of the stack (assuming <TT>size_ &gt; 0</TT>). </P>
+<P>Please note that the <TT>data_</TT> array is automatically allocated =
+at=20
+compile time and remains allocated during the lifetime of the object. It =
+is=20
+implicitly de-allocated just like any statically declared array, when it =
+goes=20
+out of scope. Thus the underlying "footprint" of the stack object =
+remains fixed=20
+as the size changes, even when the size is changed to zero. There should =
+be no=20
+calls to operators <TT>new</TT> or <TT>delete</TT> in this =
+implementation. </P>
+<P>This implementation will have the requirement on clients that the =
+maximum=20
+size required for the stack is known in advance and determined by the =
+second=20
+template argument - see requirements below.</P>
+<H2>TQueue Implementation Plan</H2>
+<P>
+<P>We will implement the queue abstraction as a C++ class template=20
+<TT>TQueue</TT> with the following public methods: </P>
+<BLOCKQUOTE><PRE>// TQueue &lt; T &gt; API
+void      Push    (const T&amp; t); // push t onto queue
+T         Pop     ();           // pop queue and return removed element; =
+error if queue is empty
+T&amp;        Front   ();           // return front element of queue; =
+error if queue is empty
+const T&amp;  Front   () const;     // const version
+size_t    Size    () const;     // return number of elements in queue
+int       Empty   () const;     // return 1 if queue is empty, 0 if not =
+empty
+void      Clear   ();           // make the queue empty
+void      Display (std::ostream&amp; os, char ofc =3D '\0') const; // =
+output contents through os
+</PRE></BLOCKQUOTE>
+<P>There should be a full complement of self-management features: </P>
+<BLOCKQUOTE><PRE>TQueue             ();              // default =
+constructor
+TQueue             (const TQueue&amp;); // copy constructor
+~TQueue            ();              // destructor
+TQueue&amp; operator =3D (const TQueue&amp;); // assignment operator
+</PRE></BLOCKQUOTE>
+<P>Unlike Stack, Queue requires access to data at both the front and =
+back, which=20
+makes an array implementation impractical. We will use a linked list=20
+implementation using a link class defined as follows: </P>
+<BLOCKQUOTE><PRE>class Link
+{
+  Link ( const T&amp; t );  // 1-parameter constructor
+  T      element_;
+  Link * nextLink_;
+  friend class TQueue&lt;T&gt;;
+};
+</PRE></BLOCKQUOTE>
+<P>Note that all members of class <TT>Link</TT> are private, which means =
+a=20
+<TT>Link</TT> object can be created or accessed only inside an =
+implementation of=20
+its friend class <TT>TQueue&lt;T&gt;</TT>. The only method for class=20
+<TT>Link</TT> is its constructor, whose implementation should just =
+initialize=20
+the two variables. (This can be done inside the class definition, as =
+shown=20
+below.) </P>
+<P>The private <TT>TQueue</TT> variables for this implementation will be =
+exactly=20
+two pointers to links, the first and last links created. Including the=20
+definition of the helper class <TT>Link</TT>, the private section of the =
+class=20
+definition should be like the following (with implementor-chosen private =
+
+variable names): </P>
+<BLOCKQUOTE><PRE>template &lt; typename T &gt;
+class TQueue
+{
+  public:
+  ...
+
+  private:
+    class Link
+    {
+      Link ( const T&amp; t ) : element_(t), nextLink_(0) {}
+      T      element_;
+      Link * nextLink_;
+      friend class TQueue&lt;T&gt;;
+    };
+  Link * firstLink_;
+  Link * lastLink_;
+};
+</PRE></BLOCKQUOTE>
+<P>The class constructor will have responsibility for initializing the =
+two=20
+variables to zero. These two pointers will be zero exactly when there is =
+no data=20
+in the queue (the queue is empty). Links for data will be allocated as =
+needed by=20
+<TT>Push()</TT> and de-allocated by <TT>Pop()</TT>. These operations =
+will also=20
+need to re-direct appropriate link pointers in the dynamically allocated =
+links,=20
+and maintain the class variables <TT>firstLink_</TT> and =
+<TT>lastLink_</TT>=20
+correctly pointing to the links containing the first and last elements =
+of the=20
+queue. The destructor should de-allocate all remaining dynamically =
+allocated=20
+links in the queue. The Size() method will have to loop through the =
+links to=20
+count them, whereas the Empty() method can do a simple check for =
+emptiness of=20
+the queue. </P>
+<P>Because this implementation relies on dynamically allocated memory, =
+the=20
+container makes no restrictions on the client program as to anticipated =
+maximum=20
+size of the queue. </P>
+<H2>Procedural Requirements</H2>
+<OL type=3D1>
+  <LI>
+  <P>Create and work within a separate subdirectory =
+<TT>cop3330/proj2</TT>.=20
+  Review the COP 3330 rules found in Introduction/Work Rules. </P>
+  <LI>
+  <P>After starting your log, copy the following files from the course =
+directory=20
+  <TT>[LIB]</TT> into your <TT>proj2</TT> directory: </P>
+  <P></P>
+  <BLOCKQUOTE><PRE>proj2/in2post.cpp
+proj2/proj2submit.sh
+area51/in2post_s.x
+area51/in2post_i.x
+area51/ftstack_i.x
+area51/ftstack_s.x
+area51/ftqueue_i.x
+area51/ftqueue_s.x
+</PRE></BLOCKQUOTE>
+  <P>The naming of these files uses the convention that <TT>_s</TT> are =
+compiled=20
+  for Sun/Solaris and <TT>_i</TT> are compiled for Intel/Linux. Use one =
+of the=20
+  sample client executables to experiment to get an understanding of how =
+your=20
+  program should behave. </P>
+  <LI>
+  <P>Define and implement the class template =
+<TT>fsu::TStack&lt;T,N&gt;</TT> in=20
+  the file <TT>tstack.h</TT>. Be sure to make log entries for your work=20
+  sessions. </P>
+  <LI>
+  <P>Devise a test client for <TT>TStack&lt;T,N&gt;</TT> that exercises =
+the=20
+  Stack interface for at least one native type and one user-defined type =
+
+  <TT>T</TT>. Repair your code as necessary. Put this test client in the =
+file=20
+  <TT>ftstack.cpp</TT>. Be sure to make log entries for your work =
+sessions. </P>
+  <LI>
+  <P>Define and implement the class template =
+<TT>fsu::TQueue&lt;T&gt;</TT> in=20
+  the file <TT>tqueue.h</TT>. Be sure to make log entries for your work=20
+  sessions. </P>
+  <LI>
+  <P>Devise a test client for <TT>TQueue&lt;T&gt;</TT> that exercises =
+the Queue=20
+  interface for at least one native type and one user-defined type =
+<TT>T</TT>.=20
+  Put this test client in the file <TT>ftqueue.cpp</TT>. Be sure to make =
+log=20
+  entries for your work sessions. </P>
+  <LI>
+  <P>Test <TT>TStack</TT> and <TT>TQueue</TT> using the supplied =
+application=20
+  <TT>in2post.cpp</TT>. Again, make sure behavior is appropriate and =
+make=20
+  corrections if necessary. Log your activities.</P>
+  <LI>
+  <P>Turn in <TT>tstack.h</TT>, <TT>tqueue.h</TT>, <TT>ftstack.cpp</TT>, =
+and=20
+  <TT>ftqueue.cpp</TT> using the <TT>proj2submit.sh</TT> submit script. =
+</P>
+  <P><EM><B>Warning:</B> Submit scripts do not work on the =
+<TT>program</TT> and=20
+  <TT>linprog</TT> servers. Use <TT>shell.cs.fsu.edu</TT> to submit =
+projects. If=20
+  you do not receive the second confirmation with the contents of your =
+project,=20
+  there has been a malfunction.</EM> </P></LI></OL>
+<H2>Code Requirements and Specifications</H2>
+<OL type=3D1>
+  <LI>
+  <P>Both <TT>TStack</TT> and <TT>TQueue</TT> should be a proper type, =
+with full=20
+  copy support. That is, they should have a public default constructor,=20
+  destructor, copy constructor, and assignment operator. Be sure that =
+you test=20
+  the copy constructor and assignment operator. </P>
+  <LI>
+  <P>The <TT>TStack</TT> constructor should create a stack that is empty =
+but has=20
+  the capacity to hold <TT>N</TT> elements, where <TT>N</TT> is the =
+second=20
+  template parameter with type <TT>size_t</TT>. Note that this parameter =
+should=20
+  be given the default value of 100. This has the effect of making a =
+declaration=20
+  such as<BR>&nbsp;<BR><TT>fsu::TStack&lt;int&gt; s;</TT> =
+<BR>&nbsp;<BR>legal=20
+  and create a stack with capacity 100. </P>
+  <LI>
+  <P>The <TT>TQueue</TT> constructor should create an empty queue with =
+no=20
+  dynamic memory allocation. </P>
+  <LI>
+  <P>The <TT>TQueue&lt;T&gt;::Push(t)</TT> operation must dynamically =
+allocate=20
+  memory required for storing <TT>t</TT> in the queue. Similarly, the=20
+  <TT>TQueue&lt;T&gt;::Pop()</TT> operation must de-allocate memory used =
+to=20
+  store the element being removed from the queue. </P>
+  <LI>
+  <P>As always, the class destructors should de-allocate all dynamic =
+memory=20
+  still owned by the object. The stack and queue implementations will be =
+very=20
+  different. </P>
+  <LI>
+  <P>Use the implementation plans discussed above. No methods or =
+variables=20
+  should be added to these classes, beyond those specified above and in =
+the=20
+  implementation plans. </P>
+  <LI>
+  <P>The <TT>Display(os, ofc)</TT> methods are intended to regurgitate =
+the=20
+  contents out through the <TT>std::ostream</TT> object <TT>os</TT>. The =
+second=20
+  parameter <TT>ofc</TT> is a single output formatting character that =
+has the=20
+  default value <TT>'\0'</TT>. (The other three popular choices for =
+<TT>ofc</TT>=20
+  are <TT>'&nbsp;'</TT>, <TT>'\t'</TT> and <TT>'\n'</TT>.) The =
+implementation of=20
+  <TT>Display</TT> must recognize two cases:=20
+  <OL type=3Di>
+    <LI><TT>ofc =3D=3D '\0'</TT>: send the contents to output with =
+nothing between=20
+    them=20
+    <LI><TT>ofc !=3D '\0'</TT>: send the contents to output with =
+<TT>ofc</TT>=20
+    separating them </LI></OL>Thus, for example, =
+<TT>S.Display(std::cout)</TT>=20
+  would send the contents of <TT>S</TT> to standard output.=20
+  <P></P>
+  <LI>
+  <P>The output operator should be overloaded as follows: </P>
+  <BLOCKQUOTE><PRE>template &lt; typename T , size_t N &gt;
+std::ostream&amp; operator &lt;&lt; (std::ostream&amp; os, const =
+TStack&lt;T,N&gt;&amp; S)
+{
+  S.Display (os, '\0');
+  return os;
+}
+
+template &lt; typename T &gt;
+std::ostream&amp; operator &lt;&lt; (std::ostream&amp; os, const =
+TQueue&lt;T&gt;&amp; S)
+{
+  S.Display (os, '\0');
+  return os;
+}
+</PRE></BLOCKQUOTE>
+  <P>The overload of <TT>operator &lt;&lt;()</TT> should be placed in =
+your=20
+  stack/queue header file immediately following the class definition. =
+</P>
+  <LI>
+  <P>The classes <TT>TStack</TT> amd <TT>TQueue</TT> should be in the=20
+  <TT>fsu</TT> namespace. </P>
+  <LI>
+  <P>The files <TT>tstack.h</TT> and <TT>tqueue.h</TT> should be =
+protected=20
+  against multiple reads using the <TT>#ifndef ... #define ... =
+#endif</TT>=20
+  mechanism. </P>
+  <LI>
+  <P>The test client programs <TT>ftstack.cpp</TT> and =
+<TT>ftqueue.cpp</TT>=20
+  should adequately test the functionality of stack and queue, =
+respectively,=20
+  including the output operator. It is your responsibility to create =
+these test=20
+  programs and to use them for actual testing of your stack and queue =
+data=20
+  structures. </P></LI></OL>
+<H2>Hints</H2>
+<UL>
+  <LI>
+  <P>Your test clients can be modelled on the harness =
+<TT>fbitvect.cpp</TT>=20
+  distributed as part of a previous assignment. </P>
+  <LI>
+  <P>It is recommended that you carry the stack portion of the project =
+through=20
+  to completion, including implementation and testing, before starting =
+on the=20
+  queue portion. The implementation plan for <TT>TStack</TT> uses design =
+and=20
+  methodology that you already have experience with. The implementation =
+plan for=20
+  <TT>TQueue</TT> uses design and methodology that is very different and =
+new.=20
+  </P>
+  <LI>
+  <P>Keep in mind that the implementations of class template methods are =
+in=20
+  themselves template functions. For example, the implementation of the=20
+  <TT>TStack</TT> method <TT>Pop()</TT> would look something like this: =
+</P>
+  <BLOCKQUOTE><PRE>template &lt; typename T , size_t N &gt;
+T TStack&lt;T,N&gt;::Pop()
+{
+  // yada dada
+  return ??;
+}
+</PRE></BLOCKQUOTE>and the <TT>TQueue</TT> method <TT>Pop()</TT> would =
+look=20
+  something like this:=20
+  <P></P>
+  <BLOCKQUOTE><PRE>template &lt; typename T &gt;
+T TQueue&lt;T&gt;::Pop()
+{
+  // yada dada
+  return ??;
+}
+</PRE></BLOCKQUOTE>
+  <LI>
+  <P>We will test your implementations using (1) your supplied test =
+clients, (2)=20
+  <TT>in2post</TT>, and (3) test clients of our own design. </P>
+  <LI>
+  <P>There are two versions of <TT>TStack::Top()</TT> and=20
+  <TT>TQueue::Front()</TT>. These are distunguished by "<TT>const</TT>"=20
+  modifiers for one of the versions. The implementation code is =
+identical for=20
+  each version. The main point is that "<TT>Top()</TT>" can be called on =
+a=20
+  constant stack, but the returned reference may not be used to modify =
+the top=20
+  element. This nuance will be tested in our assessment. You can test it =
+with=20
+  two functions such as: </P>
+  <BLOCKQUOTE><PRE>char ShowTop(const fsu::TStack&lt;char&gt;&amp; s)
+{
+  return s.Top();
+}
+
+void ChangeTop(fsu::TStack&lt;char&gt;&amp; s, char newTop)
+{
+  s.Top() =3D newTop;
+}
+</PRE></BLOCKQUOTE>
+  <P>Note that <TT>ShowTop</TT> has a <TT>const</TT> reference to a =
+stack, so=20
+  would be able to call the const version of <TT>Top()</TT> but not the=20
+  non-const version, but that suffices. <TT>ChangeTop</TT> would need to =
+call=20
+  the non-const version in order to change the value at the top of the =
+stack. A=20
+  simple test named "<TT>constTest.cpp</TT>" is posted in the =
+distribution=20
+  directory. </P></LI></UL></BODY></HTML>
+
+------=_NextPart_000_0003_01CCB2E6.8E34F800
+Content-Type: text/css;
+	charset="windows-1256"
+Content-Transfer-Encoding: quoted-printable
+Content-Location: http://www.cs.fsu.edu/~lacher/styles/RCLstyle1.css
+
+PRE {
+	FONT-FAMILY: Courier New, Fixedsys; FONT-SIZE: 10pt
+}
+TT {
+	FONT-FAMILY: Courier New, Fixedsys; FONT-SIZE: 10pt
+}
+P {
+	FONT-FAMILY: Verdana, sans-serif; FONT-SIZE: 10pt
+}
+H1 {
+	FONT-FAMILY: Verdana, sans-serif; FONT-SIZE: 12pt; FONT-WEIGHT: bold
+}
+H2 {
+	FONT-FAMILY: Verdana, sans-serif; FONT-SIZE: 10pt; FONT-WEIGHT: bold
+}
+H3 {
+	FONT-FAMILY: Verdana, sans-serif; FONT-SIZE: 10pt; FONT-WEIGHT: bold
+}
+UL {
+	FONT-FAMILY: Verdana, sans-serif; FONT-SIZE: 10pt
+}
+LI {
+	FONT-FAMILY: Verdana, sans-serif; FONT-SIZE: 10pt
+}
+DL {
+	FONT-FAMILY: Verdana, sans-serif; FONT-SIZE: 10pt
+}
+DT {
+	FONT-FAMILY: Verdana, sans-serif; FONT-SIZE: 10pt
+}
+DD {
+	FONT-FAMILY: Verdana, sans-serif; FONT-SIZE: 10pt
+}
+EM {
+	FONT-STYLE: italic; FONT-FAMILY: Verdana, sans-serif; COLOR: #990000; =
+FONT-SIZE: 10pt
+}
+TD {
+	FONT-FAMILY: Verdana, sans-serif; FONT-SIZE: 10pt
+}
+
+------=_NextPart_000_0003_01CCB2E6.8E34F800--
